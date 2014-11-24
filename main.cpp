@@ -1,17 +1,24 @@
 #include <iostream>
-#include "FourierContour.hpp"
+#include "Contour.hpp"
 
 int main(int argc, char * argv[])
 {
-	Contour cont(5);
-	for(unsigned int i =0; i < cont.tabComplex.size(); i++){
+	Contour cont;
+	
+	for(unsigned int i =0; i < 4; i++)
+	{
 		std::complex<double> c(i, i*2);
 		cont.insertPointEnd(c);
 	}
-	FourierContour fcont(cont.getTabComplex().size());
-	fcont.transformeeFourier(0.5, cont.getTabComplex());
+	cont.affichageContour();
+	Contour transfoFourier(cont.transformeeFourier());
+	transfoFourier.affichageContour();
 	
-	fcont.affichageContour();
+	Contour recompoTransforFourier(transfoFourier.recompoTransformeeFourier());
+	recompoTransforFourier.affichageContour();
+	
+	Contour FFTContour(cont.FFT());
+	FFTContour.affichageContour();
     return 0;
 }
 
