@@ -5,11 +5,11 @@ OBJS = $(SRC:.cpp=.o)
 all: Test
 
 %.o: %.cpp
-	g++ $(OPT) -c $< -o $@
+	g++ $(OPT) -c -g $< -o $@
 	
 Test: $(OBJS)
 	g++ $(OPT) $^ -o $@
-	./$@
+	#./$@
 
 clean:
 	rm *.o
