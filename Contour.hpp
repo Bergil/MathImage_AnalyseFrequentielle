@@ -18,16 +18,15 @@ public :
 	Contour(const Contour & contour) = default;
 	Contour(const std::vector<std::complex<double>> & contour);
 	Contour(const std::string& nomFichier);
-	~Contour();
 	
 	void insertPointEnd(std::complex<double> & point);
 	void deletePointEnd();
-	std::vector<std::complex<double>> transformeeFourier();
-	std::vector<std::complex<double>> recompoTransformeeFourier();
-	std::complex<double> getPoint(int indice);
-	std::vector<std::complex<double>> getTabComplex();
-	std::vector<std::complex<double>> FFT();
-	void affichageContour();
+	
+	const std::complex<double>& getPoint(int indice)const;
+	const std::vector<std::complex<double>>& getTabComplex() const;
+	void setTabComplex(const std::vector<std::complex<double>>& newtab);
+
+	void affichage()const;
 	
 private :
 	std::vector<std::complex<double>> tabComplex;	
