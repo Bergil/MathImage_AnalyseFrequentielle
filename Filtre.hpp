@@ -10,36 +10,41 @@
 #include <math.h>
 #include "TransformeeFourier.hpp"
 
-class Filtre{
+class Filtre {
 	public :
-		virtual void operator()(TransformeeFourier & tf) =0;
+		virtual void operator()(TransformeeFourier::Signal & tf)const =0;
 	
 };
 
 
 class FiltreHaut : public Filtre{
 	public : 
-		virtual void operator()(TransformeeFourier & tf) override;
+		virtual void operator()(TransformeeFourier::Signal  & tf)const override;
 		
-		FiltreHaut(double a);
+		FiltreHaut(double f) : frequence(f){}
 		
 	private :
-		double amplitude;
+		double frequence;
 };
 
 class FiltreBas : public Filtre{
 	public : 
-		virtual void operator()(TransformeeFourier & tf) override;
+		virtual void operator()(TransformeeFourier::Signal  & tf)const override;
 		
-		FiltreBas(double a);
+		FiltreBas(double f) : frequence(f){}
 		
 	private :
-		double amplitude;
+		double frequence;
 };
 
 class FiltreGaussien : public Filtre{
 	public : 
-		virtual void operator()(TransformeeFourier & tf) override;
+		virtual void operator()(TransformeeFourier::Signal  & tf)const override;
 		
+		FiltreGaussien(double e, double et, double c) : esperance(e), ecarttype(et), centreF(c){}
 		
+	private : 
+		double esperance;
+		double ecarttype;
+		double centreF;
 };

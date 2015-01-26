@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Contour.hpp"
 #include "TransformeeFourier.hpp"
+#include "Filtre.hpp"
 
 int main(int argc, char * argv[])
 {
@@ -14,7 +15,7 @@ int main(int argc, char * argv[])
 	
 	cont.affichage();
 	TransformeeFourier transfoFourier;
-	transfoFourier.transformeeFourier(cont.getTabComplex());
+	transfoFourier.fourier(cont.getTabComplex());
 	std::cout<<"Transfo Fourier"<<std::endl;
 	transfoFourier.affichage();
 	
@@ -22,13 +23,19 @@ int main(int argc, char * argv[])
 	std::cout<<"Recompo Fourier"<<std::endl;
 	recompo.affichage();
 	
-	transfoFourier.FFT(cont.getTabComplex());
+	transfoFourier.setSignal(transfoFourier.FFT(cont.getTabComplex()));
 	std::cout<<"FFT"<<std::endl;
 	transfoFourier.affichage();
 	
 	Contour recompoFFT(transfoFourier.inverse());
 	std::cout<<"RecompoFFT"<<std::endl;
 	recompoFFT.affichage();
+	
+	FiltreGaussien filtreG(0,1,7);
+	filtreG(transfoFourier.getSignal());
+	
+	std::cout<<"Filtre Gaussien"<<std::endl;
+	transfoFourier.affichage();
     return 0;
 }
 

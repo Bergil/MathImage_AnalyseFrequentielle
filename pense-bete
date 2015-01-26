@@ -1,0 +1,10 @@
+ 
+pour image en gris : le gris = réelle, et imaginaire = null
+pour image couleur RGB : passer en HSV (ou un truc du genre) et tester sur l'intensité (luminance) (comme en gris)
+pour transformée : amplitude = réelle et imaginaire = phase
+
+faire une classe image. qui prend un vecteur de vecteur de pixel (?).Et une classe transfoFourier2D qui prend un vector de transfoFourier2D
+pour transfo image => transfo fourier sur chaque ligne.
+
+Pour filtre gaussien => filtre sur transfoFourier2D (sur chaque ligne) puis transposé de transfoFourier2D puis re filtre sur la transfo. pour afficher l'image filtré il faut re-transposé. (inversefourier + transpo + inversefourier)
+

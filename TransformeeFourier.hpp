@@ -13,20 +13,27 @@
 class TransformeeFourier{
 
 public :
+
+	using Signal = std::vector<std::complex<double>>;
 	TransformeeFourier() =default;
 	TransformeeFourier(const Contour & contour);
-	TransformeeFourier(const std::vector<std::complex<double>> & contour);
+	TransformeeFourier(const Signal & contour);
 	
-	void transformeeFourier(const std::vector<std::complex<double>> & contour);
-	void FFT(const std::vector<std::complex<double>> & contour);
-	std::vector<std::complex<double>> inverse();
+	void fourier(const Signal & contour);
+	static Signal FFT(const Signal & contour);
+	
+	Signal inverse();
+	static Signal inverse(const Signal & signal);
 	
 	const std::complex<double> & getValue(int indice)const;
-	const std::vector<std::complex<double>>& getTabComplex()const;
+	void setValue(int indice, std::complex<double> value);
+	const Signal& getSignal()const;
+	Signal& getSignal();
+	void setSignal(const Signal &s) {tabComplex = s;}
 	void affichage()const;
 	
 private :
-	std::vector<std::complex<double>> tabComplex;
-		
+	Signal tabComplex;
+	
 };
 

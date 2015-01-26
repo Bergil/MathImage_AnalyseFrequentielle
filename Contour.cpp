@@ -1,7 +1,8 @@
 #include "Contour.hpp"
 #include <bitset>
+
 Contour::Contour(int nbPoints) : 
-	tabComplex(5, 0)
+	tabComplex(nbPoints, 0)
 {
 }
 
@@ -52,7 +53,7 @@ void Contour::setTabComplex(const std::vector<std::complex<double>>& newtab){
 void Contour::affichage()const{
 	
 	for(auto i : tabComplex){
-		std::cout << "Point : "<< i <<"\n";
+		std::cout << "Point : "<< i <<std::endl;
 	}
 }
 
